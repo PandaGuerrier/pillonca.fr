@@ -28,7 +28,6 @@ export default defineConfig({
   commands: [
     () => import('@adonisjs/core/commands'),
     () => import('@adonisjs/lucid/commands'),
-    () => import('@adonisjs/mail/commands'),
     () => import('@adonisjs/bouncer/commands'),
     () => import('@jrmc/adonis-attachment/commands'),
     () => import('@tuyau/core/commands'),
@@ -60,7 +59,6 @@ export default defineConfig({
     () => import('@adonisjs/lucid/database_provider'),
     () => import('@adonisjs/auth/auth_provider'),
     () => import('@adonisjs/inertia/inertia_provider'),
-    () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/bouncer/bouncer_provider'),
     () => import('@adonisjs/ally/ally_provider'),
     () => import('@jrmc/adonis-attachment/attachment_provider'),
@@ -96,7 +94,6 @@ export default defineConfig({
 
     //users
     () => import('#users/start/view'),
-    () => import('#users/start/events'),
     () => import('#users/routes'),
   ],
 

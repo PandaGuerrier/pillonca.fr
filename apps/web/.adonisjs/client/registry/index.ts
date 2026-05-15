@@ -66,18 +66,6 @@ const routes = {
     tokens: [{"old":"/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['auth.sign_out.handle']['types'],
   },
-  'auth.sign_up.show': {
-    methods: ["GET","HEAD"],
-    pattern: '/sign-up',
-    tokens: [{"old":"/sign-up","type":0,"val":"sign-up","end":""}],
-    types: placeholder as Registry['auth.sign_up.show']['types'],
-  },
-  'auth.sign_up.handle': {
-    methods: ["POST"],
-    pattern: '/sign-up',
-    tokens: [{"old":"/sign-up","type":0,"val":"sign-up","end":""}],
-    types: placeholder as Registry['auth.sign_up.handle']['types'],
-  },
   'auth.forgot_password.show': {
     methods: ["GET","HEAD"],
     pattern: '/forgot-password',
@@ -101,18 +89,6 @@ const routes = {
     pattern: '/reset-password/:token',
     tokens: [{"old":"/reset-password/:token","type":0,"val":"reset-password","end":""},{"old":"/reset-password/:token","type":1,"val":"token","end":""}],
     types: placeholder as Registry['auth.reset_password.handle']['types'],
-  },
-  'social.create': {
-    methods: ["GET","HEAD"],
-    pattern: '/:provider/redirect',
-    tokens: [{"old":"/:provider/redirect","type":1,"val":"provider","end":""},{"old":"/:provider/redirect","type":0,"val":"redirect","end":""}],
-    types: placeholder as Registry['social.create']['types'],
-  },
-  'social.callback': {
-    methods: ["GET","HEAD"],
-    pattern: '/:provider/callback',
-    tokens: [{"old":"/:provider/callback","type":1,"val":"provider","end":""},{"old":"/:provider/callback","type":0,"val":"callback","end":""}],
-    types: placeholder as Registry['social.callback']['types'],
   },
   'locale.switch': {
     methods: ["POST"],

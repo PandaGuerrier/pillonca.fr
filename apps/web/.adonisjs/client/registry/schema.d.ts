@@ -127,30 +127,6 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#auth/controllers/sign_out_controller').default['handle']>>>
     }
   }
-  'auth.sign_up.show': {
-    methods: ["GET","HEAD"]
-    pattern: '/sign-up'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#auth/controllers/sign_up_controller').default['show']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#auth/controllers/sign_up_controller').default['show']>>>
-    }
-  }
-  'auth.sign_up.handle': {
-    methods: ["POST"]
-    pattern: '/sign-up'
-    types: {
-      body: ExtractBody<InferInput<(typeof import('#auth/validators').signUpValidator)>>
-      paramsTuple: []
-      params: {}
-      query: ExtractQuery<InferInput<(typeof import('#auth/validators').signUpValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#auth/controllers/sign_up_controller').default['handle']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#auth/controllers/sign_up_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
-    }
-  }
   'auth.forgot_password.show': {
     methods: ["GET","HEAD"]
     pattern: '/forgot-password'
@@ -197,30 +173,6 @@ export interface Registry {
       query: ExtractQuery<InferInput<(typeof import('#auth/validators').resetPasswordValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#auth/controllers/reset_password_controller').default['handle']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#auth/controllers/reset_password_controller').default['handle']>>> | { status: 422; response: { errors: SimpleError[] } }
-    }
-  }
-  'social.create': {
-    methods: ["GET","HEAD"]
-    pattern: '/:provider/redirect'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { provider: ParamValue }
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#auth/controllers/social_controller').default['redirect']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#auth/controllers/social_controller').default['redirect']>>>
-    }
-  }
-  'social.callback': {
-    methods: ["GET","HEAD"]
-    pattern: '/:provider/callback'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { provider: ParamValue }
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#auth/controllers/social_controller').default['callback']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#auth/controllers/social_controller').default['callback']>>>
     }
   }
   'locale.switch': {

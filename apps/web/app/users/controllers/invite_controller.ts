@@ -1,6 +1,5 @@
 import { inject } from '@adonisjs/core/container'
 import type { HttpContext } from '@adonisjs/core/http'
-import emitter from '@adonisjs/core/services/emitter'
 
 import User from '#users/models/user'
 
@@ -13,7 +12,7 @@ import { inviteUserValidator } from '#users/validators'
 export default class InviteController {
   constructor(private passwordResetService: PasswordResetService) {}
 
-  public async handle({ i18n, bouncer, request, response }: HttpContext) {
+  public async handle({ bouncer, request, response }: HttpContext) {
     await bouncer.with(UserPolicy).authorize('invite')
 
     const payload = await request.validateUsing(inviteUserValidator)
@@ -25,22 +24,7 @@ export default class InviteController {
 
     await user.save()
 
-    const { token } = await this.passwordResetService.generateToken(user)
-
-    const translations = {
-      subject: i18n.t('users.emails.welcome.subject'),
-      title: i18n.t('users.emails.welcome.title', { full_name: user.fullName ?? user.email }),
-      subtitle: i18n.t('users.emails.welcome.subtitle'),
-      actionBtn: i18n.t('users.emails.welcome.action_btn'),
-      defaultMessage: i18n.t('users.emails.welcome.default_message'),
-    }
-
-    emitter.emit('user:registered', {
-      user: user,
-      token,
-      translations: translations,
-      message: payload.description,
-    })
+    await this.passwordResetService.generateToken(user)
 
     return response.redirect().toRoute('users.index')
   }
