@@ -41,27 +41,6 @@ export default await Env.create(new URL('../', import.meta.url), {
 
   /*
   |----------------------------------------------------------
-  | Variables for configuring the mail package
-  |----------------------------------------------------------
-  */
-  RESEND_API_KEY: Env.schema.string(),
-  EMAIL_FROM: Env.schema.string(),
-  SMTP_HOST: Env.schema.string({ format: 'host' }),
-  SMTP_PORT: Env.schema.number(),
-  SMTP_USERNAME: Env.schema.string(),
-  SMTP_PASSWORD: Env.schema.string(),
-  SMTP_SECURE: Env.schema.boolean(),
-  SMTP_REJECTUNAUTHORIZED: Env.schema.boolean(),
-  /*
-  |----------------------------------------------------------
-  | Variables for configuring ally package
-  |----------------------------------------------------------
-  */
-  GOOGLE_CLIENT_ID: Env.schema.string(),
-  GOOGLE_CLIENT_SECRET: Env.schema.string(),
-
-  /*
-  |----------------------------------------------------------
   | Variables for configuring the drive package
   |----------------------------------------------------------
   */
