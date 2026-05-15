@@ -81,7 +81,7 @@ services:
 
   cloudflared-exprefrei:
     image: cloudflare/cloudflared:latest
-    container_name: cf_exprefrei
+    container_name: '${COMPOSE_PROJECT_NAME}_cf'
     command: tunnel run --token ${CF_TOKEN}
     networks:
       - sail
