@@ -1,0 +1,94 @@
+import type { HttpContext } from '@adonisjs/core/http'
+import { randomUUID } from 'node:crypto'
+
+import Role from '#users/models/role'
+import User from '#users/models/user'
+
+import RoleTransformer from '#users/transformers/role_transformer'
+import UserTransformer from '#users/transformers/user_transformer'
+
+import UserPolicy from '#users/policies/user_policy'
+
+import { createUserValidator, editUserValidator, listUserValidator } from '#users/validators'
+
+export default class UsersController {
+  public async index({ bouncer, inertia, request }: HttpContext) {
+    await bouncer.with(UserPolicy).authorize('viewList')
+
+    const payload = await request.validateUsing(listUserValidator)
+
+    const limit = payload.perPage || 10
+    const page = payload.page || 1
+    const querySearch = payload.q || undefined
+    const roleIds = payload.roleIds || []
+
+    const query = User.query()
+
+    if (querySearch) {
+      query.where((subquery) => {
+        subquery
+          .where('full_name', 'ilike', `%${querySearch}%`)
+          .orWhere('email', 'ilike', `%${querySearch}%`)
+      })
+    }
+
+    if (Array.isArray(roleIds) && roleIds.length > 0) {
+      query.andWhereIn('role_uuid', roleIds)
+    }
+
+    const [users, roles] = await Promise.all([
+      query.preload('role').paginate(page, limit),
+      Role.all(),
+    ])
+
+    const usersData = users.all()
+    return inertia.render('users/index', {
+      users: UserTransformer.paginate(usersData, users.getMeta()),
+      roles: RoleTransformer.transform(roles),
+      q: querySearch,
+      selectedRoles: roleIds,
+    })
+  }
+
+  public async store({ bouncer, request, response }: HttpContext) {
+    await bouncer.with(UserPolicy).authorize('create')
+
+    const payload = await request.validateUsing(createUserValidator)
+
+    const user = new User()
+    user.merge({
+      ...payload,
+      password: payload.password ? payload.password : randomUUID(),
+    })
+
+    await user.save()
+
+    return response.redirect().toRoute('users.index')
+  }
+
+  public async update({ bouncer, params, request, response }: HttpContext) {
+    const user = await User.findOrFail(params.id)
+
+    await bouncer.with(UserPolicy).authorize('update', user)
+
+    const payload = await request.validateUsing(editUserValidator, { meta: { userId: params.id } })
+    user.merge({
+      ...payload,
+      password: payload.password ? payload.password : user.password,
+    })
+
+    await user.save()
+
+    return response.redirect().toRoute('users.index')
+  }
+
+  public async destroy({ bouncer, params, response }: HttpContext) {
+    const user = await User.findOrFail(params.id)
+
+    await bouncer.with(UserPolicy).authorize('delete', user)
+
+    await user.delete()
+
+    return response.redirect().toRoute('users.index')
+  }
+}

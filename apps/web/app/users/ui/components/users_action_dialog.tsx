@@ -1,0 +1,193 @@
+import { useForm } from '@inertiajs/react'
+import React from 'react'
+
+import { useTranslation } from '#common/ui/hooks/use_translation'
+import { urlFor } from '~/app/client'
+
+import { Button } from '@workspace/ui/components/button'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@workspace/ui/components/dialog'
+import { Field, FieldLabel } from '@workspace/ui/components/field'
+import { FieldErrorBag } from '@workspace/ui/components/field-error-bag'
+import { Input } from '@workspace/ui/components/input'
+import { PasswordInput } from '@workspace/ui/components/password-input'
+import { Progress } from '@workspace/ui/components/progress'
+import { ScrollArea } from '@workspace/ui/components/scroll-area'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@workspace/ui/components/select'
+import { toast } from '@workspace/ui/hooks/use-toast'
+
+import type { Data } from '@generated/data'
+
+interface Props {
+  roles: Data.Users.Role[]
+  currentRow?: Data.Users.User
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}
+
+export function UsersActionDialog({ roles, currentRow, open, onOpenChange }: Props) {
+  const { t } = useTranslation()
+
+  console.log(roles)
+
+  const isEdit = !!currentRow
+  const defaultRole = roles.find((role) => role.name === 'Utilisateur') || roles[0]
+
+  const { data, setData, errors, post, put, progress, clearErrors, reset } = useForm({
+    fullName: currentRow && currentRow.fullName ? currentRow.fullName : '',
+    email: currentRow ? currentRow.email : '',
+    roleUuid: currentRow ? String(currentRow.roleUuid) : defaultRole.uuid,
+    password: '',
+    passwordConfirmation: '',
+  })
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+
+    const url = isEdit ? urlFor('users.update', { id: currentRow!.uuid }) : urlFor('users.store')
+    const method = isEdit ? put : post
+
+    method(url, {
+      preserveScroll: true,
+      onSuccess: () => {
+        onOpenChange(false)
+        setTimeout(() => {
+          reset()
+          clearErrors()
+        }, 500)
+        toast(t('users.action.toast.title'), {
+          description: isEdit ? data.email : data.fullName || data.email,
+        })
+      },
+    })
+  }
+
+  return (
+    <Dialog
+      open={open}
+      onOpenChange={(state) => {
+        onOpenChange(state)
+        if (!state) {
+          setTimeout(() => {
+            reset()
+            clearErrors()
+          }, 500)
+        }
+      }}
+    >
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader className="text-left">
+          <DialogTitle className="flex items-center gap-2">
+            {t(isEdit ? 'users.action.edit.title' : 'users.action.create.title')}
+          </DialogTitle>
+          <DialogDescription>
+            {t(isEdit ? 'users.action.edit.description' : 'users.action.create.description')}
+          </DialogDescription>
+        </DialogHeader>
+        <ScrollArea>
+          <form id="user-form" onSubmit={handleSubmit} className="space-y-4 p-0.5">
+            <Field>
+              <FieldLabel htmlFor="fullName">{t('users.action.form.full_name.label')}</FieldLabel>
+              <Input
+                id="fullName"
+                placeholder={t('users.action.form.full_name.placeholder')}
+                value={data.fullName}
+                onChange={(element) => setData('fullName', element.target.value)}
+                className={`${errors?.fullName ? 'border-destructive' : ''}`}
+              />
+              <FieldErrorBag errors={errors} field="fullName" />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="email">{t('users.action.form.email.label')}</FieldLabel>
+              <Input
+                id="email"
+                placeholder={t('users.action.form.email.placeholder')}
+                value={data.email}
+                onChange={(element) => setData('email', element.target.value)}
+                className={`${errors?.email ? 'border-destructive' : ''}`}
+              />
+              <FieldErrorBag errors={errors} field="email" />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="role">{t('users.action.form.role.label')}</FieldLabel>
+              <Select value={data.roleUuid} onValueChange={(v) => setData('roleUuid', v)}>
+                <SelectTrigger className={`${errors?.roleUuid ? 'border-destructive' : ''}`}>
+                  <SelectValue placeholder={t('users.action.form.role.placeholder')} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {roles.map((role) => {
+                      return (
+                        <SelectItem key={role.uuid} value={role.uuid}>
+                          <span className="flex gap-x-2 items-center">
+                            <span className="capitalize text-sm">{role.name}</span>
+                          </span>
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              <FieldErrorBag errors={errors} field="roleUuid" />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="password">{t('users.action.form.password.label')}</FieldLabel>
+              <PasswordInput
+                id="password"
+                placeholder={t('users.action.form.password.placeholder')}
+                value={data.password}
+                onChange={(e) => setData('password', e.target.value)}
+                className={errors?.password ? 'border-destructive' : ''}
+              />
+              <FieldErrorBag errors={errors} field="password" />
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="passwordConfirmation">
+                {t('users.action.form.password_confirmation.label')}
+              </FieldLabel>
+              <PasswordInput
+                id="passwordConfirmation"
+                disabled={data.password === ''}
+                placeholder={t('users.action.form.password_confirmation.placeholder')}
+                value={data.passwordConfirmation}
+                onChange={(element) => setData('passwordConfirmation', element.target.value)}
+                className={`${errors?.passwordConfirmation ? 'border-destructive' : ''}`}
+              />
+              <FieldErrorBag errors={errors} field="passwordConfirmation" />
+            </Field>
+
+            {progress && (
+              <Progress value={progress.percentage} max={100} className="w-full h-2 rounded mt-2" />
+            )}
+          </form>
+        </ScrollArea>
+        <DialogFooter className="gap-y-2">
+          <DialogClose asChild>
+            <Button variant="outline">{t('users.action.actions.cancel')}</Button>
+          </DialogClose>
+          <Button type="submit" form="user-form">
+            {t(isEdit ? 'users.action.actions.save' : 'users.action.actions.add')}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
