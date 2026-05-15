@@ -30,12 +30,7 @@ services:
       DB_USER: ${DB_USER?err}
       DB_PASSWORD: ${DB_PASSWORD?err}
       DB_DATABASE: ${DB_DATABASE?err}
-      RESEND_API_KEY: ${RESEND_API_KEY?err}
-      EMAIL_FROM: ${EMAIL_FROM?err}
       VITE_API_URL: ${VITE_API_URL?err}
-      TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY?err}
-      VITE_TURNSTILE_SITE_KEY: ${VITE_TURNSTILE_SITE_KEY?err}
-      MONOCLE_API_KEY: ${MONOCLE_API_KEY?err}
       APP_NAME: ${APP_NAME:-Exprefrei}
       APP_VERSION: ${APP_VERSION:-1.0.0}
       APP_ENV: ${APP_ENV:-production}
@@ -103,4 +98,4 @@ networks:
 volumes:
   sailpgsql:
   sailredis:
-  web_uploads: # Ne pas oublier de déclarer le volume ici
+  web_uploads: # Ne pas oubli

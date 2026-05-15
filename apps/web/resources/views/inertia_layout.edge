@@ -1,34 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('resources/images/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('resources/images/favicon-16x16.png')}}">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#000000" />
 
     <!-- SEO -->
-    <meta name="description" content="A modern AdonisJS Starter Kit with Inertia.js, React, Tailwind CSS, and Vite — designed for building fullstack monorepo apps fast." />
-    <meta name="keywords" content="AdonisJS, InertiaJS, React, Tailwind CSS, Starter Kit, Vite, Monorepo, Fullstack, JavaScript, TypeScript" />
-    <meta name="author" content="Filipe Braida" />
+    <meta name="description" content="Menuisier artisan basé à Saint-Palais-de-Négrignac (17210). Création sur mesure en bois : meubles, agencement intérieur, escaliers. Devis gratuit en Charente-Maritime." />
+    <meta name="keywords" content="menuisier, menuiserie, bois, artisan, sur mesure, Charente-Maritime, Saint-Palais-de-Négrignac, 17210, meubles sur mesure, agencement, escaliers, ébénisterie, Laurent Pillonca" />
+    <meta name="author" content="Laurent Pillonca" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pillonca.fr/" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Geo -->
+    <meta name="geo.region" content="FR-17" />
+    <meta name="geo.placename" content="Saint-Palais-de-Négrignac" />
+    <meta name="geo.position" content="45.283;-0.367" />
+    <meta name="ICBM" content="45.283, -0.367" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://github.com/filipebraida/adonisjs-starter-kit" />
-    <meta property="og:title" content="AdonisJS Starter Kit" />
-    <meta property="og:description" content="A full-featured starter kit using AdonisJS, Inertia, React, Tailwind, and Vite." />
-    <meta property="og:image" content="https://raw.githubusercontent.com/filipebraida/adonisjs-starter-kit/main/.github/screenshot.png" />
+    <meta property="og:url" content="https://pillonca.fr/" />
+    <meta property="og:site_name" content="Pillonca Menuiserie" />
+    <meta property="og:title" content="Laurent Pillonca — Menuisier Artisan | Charente-Maritime (17)" />
+    <meta property="og:description" content="Création sur mesure en bois : meubles, agencement, escaliers. Artisan menuisier à Saint-Palais-de-Négrignac (17210)." />
+    <meta property="og:image" content="https://pillonca.fr/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
 
-    <!-- Twitter -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AdonisJS Starter Kit" />
-    <meta name="twitter:description" content="A full-featured starter kit using AdonisJS, Inertia, React, Tailwind, and Vite." />
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/filipebraida/adonisjs-starter-kit/main/.github/screenshot.png" />
+    <meta name="twitter:title" content="Laurent Pillonca — Menuisier Artisan | Charente-Maritime (17)" />
+    <meta name="twitter:description" content="Création sur mesure en bois : meubles, agencement, escaliers. Artisan à Saint-Palais-de-Négrignac (17210)." />
+    <meta name="twitter:image" content="https://pillonca.fr/og-image.jpg" />
 
-    <title inertia>
-      StarterKit
-    </title>
+    <!-- Structured data — LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Laurent Pillonca – Menuiserie",
+      "alternateName": "Pillonca Menuiserie",
+      "description": "Menuisier artisan spécialisé dans la création sur mesure en bois. Fabrication de meubles, agencement intérieur, escaliers et travaux de menuiserie en Charente-Maritime.",
+      "url": "https://pillonca.fr",
+      "telephone": "+33675374522",
+      "email": "lpillonca29@gmail.com",
+      "image": "https://pillonca.fr/og-image.jpg",
+      "priceRange": "€€",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Saint-Palais-de-Négrignac",
+        "postalCode": "17210",
+        "addressRegion": "Charente-Maritime",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.283,
+        "longitude": -0.367
+      },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Charente-Maritime"
+      },
+      "knowsAbout": ["Menuiserie", "Ébénisterie", "Bois", "Agencement intérieur", "Meubles sur mesure", "Escaliers bois"],
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Chèque, Virement bancaire, Espèces",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
+
+    <title inertia>Laurent Pillonca — Menuisier Artisan</title>
 
     @stack('dumper')
     @viteReactRefresh()
