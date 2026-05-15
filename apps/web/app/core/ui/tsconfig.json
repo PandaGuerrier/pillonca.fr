@@ -20,6 +20,8 @@
     "../../users/types/**/*.ts",
     "../../marketing/ui/**/*.ts",
     "../../marketing/ui/**/*.tsx",
+    "../../picture/ui/**/*.ts",
+    "../../picture/ui/**/*.tsx",
     "../../common/ui/**/*.ts",
     "../../common/ui/**/*.tsx",
     "../../analytics/ui/**/*.ts",

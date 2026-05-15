@@ -1,6 +1,6 @@
 import type { SimpleTFunction } from '#common/ui/hooks/use_translation'
 
-import { LogOut, Settings, Users } from 'lucide-react'
+import { ImageIcon, LogOut, Settings, Users } from 'lucide-react'
 
 import type { NavMainItem, NavUserOptionsGroup } from '#common/ui/types/navigation'
 
@@ -37,6 +37,12 @@ export function getNavMain(t: SimpleTFunction): NavMainItem[] {
           title: t('common.layout.navMain.users'),
           url: '/users',
           icon: Users,
+          subject: 'user',
+        },
+        {
+          title: 'Images',
+          url: '/dashboard/pictures',
+          icon: ImageIcon,
           subject: 'user',
         },
       ],

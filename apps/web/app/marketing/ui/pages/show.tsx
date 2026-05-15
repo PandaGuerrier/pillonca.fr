@@ -1,25 +1,19 @@
-import HeroSection from '#marketing/ui/components/hero'
-import StackSection from '#marketing/ui/components/stack'
-import FeatureShowcase from '#marketing/ui/components/feature_showcase'
-import FeatureSection from '#marketing/ui/components/feature'
-import FooterSection from '#marketing/ui/components/footer'
+import type { InertiaProps } from '#core/ui/types'
+import type { Data } from '@generated/data'
+
 import HeaderSection from '#marketing/ui/components/header'
-import LogosSection from '#marketing/ui/components/logos'
+import HeroSection from '#marketing/ui/components/hero'
 
-export default function Page() {
+type PageProps = InertiaProps<{
+  pictures: Data.Picture.Picture[]
+}>
+
+export default function Page({ pictures }: PageProps) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="dark flex flex-col min-h-screen bg-black overflow-hidden max-h-screen ">
       <HeaderSection />
-
-      <main className="flex-1 mx-auto w-full">
-        <HeroSection />
-        <StackSection />
-        <div id="features">
-          <FeatureShowcase />
-        </div>
-        <FeatureSection /> {/* Actually the 'Details' section now */}
-        <LogosSection />
-        <FooterSection />
+      <main className="flex-1">
+        <HeroSection pictures={pictures} />
       </main>
     </div>
   )

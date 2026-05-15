@@ -10,6 +10,15 @@ export interface ApiDefinition {
   marketing: {
     show: typeof routes['marketing.show']
   }
+  dashboard: {
+    show: typeof routes['dashboard.show']
+  }
+  pictures: {
+    index: typeof routes['pictures.index']
+    store: typeof routes['pictures.store']
+    update: typeof routes['pictures.update']
+    destroy: typeof routes['pictures.destroy']
+  }
   auth: {
     signIn: {
       show: typeof routes['auth.sign_in.show']

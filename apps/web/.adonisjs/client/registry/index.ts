@@ -18,6 +18,36 @@ const routes = {
     tokens: [{"old":"/","type":0,"val":"/","end":""}],
     types: placeholder as Registry['marketing.show']['types'],
   },
+  'dashboard.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard',
+    tokens: [{"old":"/dashboard","type":0,"val":"dashboard","end":""}],
+    types: placeholder as Registry['dashboard.show']['types'],
+  },
+  'pictures.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard/pictures',
+    tokens: [{"old":"/dashboard/pictures","type":0,"val":"dashboard","end":""},{"old":"/dashboard/pictures","type":0,"val":"pictures","end":""}],
+    types: placeholder as Registry['pictures.index']['types'],
+  },
+  'pictures.store': {
+    methods: ["POST"],
+    pattern: '/dashboard/pictures',
+    tokens: [{"old":"/dashboard/pictures","type":0,"val":"dashboard","end":""},{"old":"/dashboard/pictures","type":0,"val":"pictures","end":""}],
+    types: placeholder as Registry['pictures.store']['types'],
+  },
+  'pictures.update': {
+    methods: ["PUT","PATCH"],
+    pattern: '/dashboard/pictures/:id',
+    tokens: [{"old":"/dashboard/pictures/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/pictures/:id","type":0,"val":"pictures","end":""},{"old":"/dashboard/pictures/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['pictures.update']['types'],
+  },
+  'pictures.destroy': {
+    methods: ["DELETE"],
+    pattern: '/dashboard/pictures/:id',
+    tokens: [{"old":"/dashboard/pictures/:id","type":0,"val":"dashboard","end":""},{"old":"/dashboard/pictures/:id","type":0,"val":"pictures","end":""},{"old":"/dashboard/pictures/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['pictures.destroy']['types'],
+  },
   'auth.sign_in.show': {
     methods: ["GET","HEAD"],
     pattern: '/login',

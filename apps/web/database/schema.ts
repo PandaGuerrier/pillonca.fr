@@ -32,6 +32,25 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class PictureSchema extends BaseModel {
+  static $columns = ['createdAt', 'description', 'file', 'isActive', 'title', 'updatedAt', 'uuid'] as const
+  $columns = PictureSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare description: string | null
+  @column()
+  declare file: any | null
+  @column()
+  declare isActive: boolean
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column({ isPrimary: true })
+  declare uuid: string
+}
+
 export class RateLimitSchema extends BaseModel {
   static $columns = ['expire', 'key', 'points'] as const
   $columns = RateLimitSchema.$columns

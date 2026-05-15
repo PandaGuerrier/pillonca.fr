@@ -12,8 +12,14 @@ export const controllers = {
     SignUp: () => import('#app/auth/controllers/sign_up_controller'),
     Social: () => import('#app/auth/controllers/social_controller'),
   },
+  dashboard: {
+    Dashboard: () => import('#app/dashboard/controllers/dashboard_controller'),
+  },
   marketing: {
     Marketing: () => import('#app/marketing/controllers/marketing_controller'),
+  },
+  picture: {
+    Pictures: () => import('#app/picture/controllers/pictures_controller'),
   },
   users: {
     Impersonates: () => import('#app/users/controllers/impersonates_controller'),

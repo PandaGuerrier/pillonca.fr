@@ -31,6 +31,66 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#marketing/controllers/marketing_controller').default['handle']>>>
     }
   }
+  'dashboard.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#dashboard/controllers/dashboard_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#dashboard/controllers/dashboard_controller').default['show']>>>
+    }
+  }
+  'pictures.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/pictures'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: ExtractQueryForGet<InferInput<(typeof import('#picture/validators').listPictureValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#picture/controllers/pictures_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#picture/controllers/pictures_controller').default['index']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'pictures.store': {
+    methods: ["POST"]
+    pattern: '/dashboard/pictures'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#picture/validators').createPictureValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#picture/validators').createPictureValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#picture/controllers/pictures_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#picture/controllers/pictures_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'pictures.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/dashboard/pictures/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#picture/validators').editPictureValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#picture/validators').editPictureValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#picture/controllers/pictures_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#picture/controllers/pictures_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'pictures.destroy': {
+    methods: ["DELETE"]
+    pattern: '/dashboard/pictures/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#picture/controllers/pictures_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#picture/controllers/pictures_controller').default['destroy']>>>
+    }
+  }
   'auth.sign_in.show': {
     methods: ["GET","HEAD"]
     pattern: '/login'

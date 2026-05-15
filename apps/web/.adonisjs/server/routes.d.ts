@@ -6,6 +6,11 @@ export type ScannedRoutes = {
   ALL: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'marketing.show': { paramsTuple?: []; params?: {} }
+    'dashboard.show': { paramsTuple?: []; params?: {} }
+    'pictures.index': { paramsTuple?: []; params?: {} }
+    'pictures.store': { paramsTuple?: []; params?: {} }
+    'pictures.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'pictures.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'auth.sign_in.show': { paramsTuple?: []; params?: {} }
     'auth.sign_in.handle': { paramsTuple?: []; params?: {} }
     'auth.sign_out.handle': { paramsTuple?: []; params?: {} }
@@ -37,6 +42,8 @@ export type ScannedRoutes = {
   GET: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'marketing.show': { paramsTuple?: []; params?: {} }
+    'dashboard.show': { paramsTuple?: []; params?: {} }
+    'pictures.index': { paramsTuple?: []; params?: {} }
     'auth.sign_in.show': { paramsTuple?: []; params?: {} }
     'auth.sign_up.show': { paramsTuple?: []; params?: {} }
     'auth.forgot_password.show': { paramsTuple?: []; params?: {} }
@@ -53,6 +60,8 @@ export type ScannedRoutes = {
   HEAD: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'marketing.show': { paramsTuple?: []; params?: {} }
+    'dashboard.show': { paramsTuple?: []; params?: {} }
+    'pictures.index': { paramsTuple?: []; params?: {} }
     'auth.sign_in.show': { paramsTuple?: []; params?: {} }
     'auth.sign_up.show': { paramsTuple?: []; params?: {} }
     'auth.forgot_password.show': { paramsTuple?: []; params?: {} }
@@ -67,6 +76,7 @@ export type ScannedRoutes = {
     'appearance.show': { paramsTuple?: []; params?: {} }
   }
   POST: {
+    'pictures.store': { paramsTuple?: []; params?: {} }
     'auth.sign_in.handle': { paramsTuple?: []; params?: {} }
     'auth.sign_out.handle': { paramsTuple?: []; params?: {} }
     'auth.sign_up.handle': { paramsTuple?: []; params?: {} }
@@ -79,14 +89,17 @@ export type ScannedRoutes = {
     'tokens.store': { paramsTuple?: []; params?: {} }
   }
   PUT: {
+    'pictures.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'profile.update': { paramsTuple?: []; params?: {} }
     'password.update': { paramsTuple?: []; params?: {} }
   }
   PATCH: {
+    'pictures.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
+    'pictures.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tokens.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }

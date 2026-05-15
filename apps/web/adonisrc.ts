@@ -83,6 +83,12 @@ export default defineConfig({
     //marketing
     () => import('#marketing/routes'),
 
+    //dashboard
+    () => import('#dashboard/routes'),
+
+    //picture
+    () => import('#picture/routes'),
+
     //auth
     () => import('#auth/start/view'),
     () => import('#auth/start/events'),
