@@ -28,13 +28,8 @@ export default class UserSeeder extends BaseSeeder {
 
     const admin = await User.updateOrCreateMany(uniqueKey, [
       {
-        email: 'admin@admin.com',
-        fullName: 'Admin',
-        password: '123',
-      },
-      {
-        email: 'user@user.com',
-        fullName: 'User',
+        email: 'laurent@pillonca.fr',
+        fullName: 'Laurent Pillonca',
         password: '123',
       },
     ])
