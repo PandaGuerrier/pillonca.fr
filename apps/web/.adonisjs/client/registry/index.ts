@@ -18,6 +18,18 @@ const routes = {
     tokens: [{"old":"/","type":0,"val":"/","end":""}],
     types: placeholder as Registry['marketing.show']['types'],
   },
+  'marketing.mentions_legales': {
+    methods: ["GET","HEAD"],
+    pattern: '/mentions-legales',
+    tokens: [{"old":"/mentions-legales","type":0,"val":"mentions-legales","end":""}],
+    types: placeholder as Registry['marketing.mentions_legales']['types'],
+  },
+  'marketing.politique_de_confidentialite': {
+    methods: ["GET","HEAD"],
+    pattern: '/politique-de-confidentialite',
+    tokens: [{"old":"/politique-de-confidentialite","type":0,"val":"politique-de-confidentialite","end":""}],
+    types: placeholder as Registry['marketing.politique_de_confidentialite']['types'],
+  },
   'dashboard.show': {
     methods: ["GET","HEAD"],
     pattern: '/dashboard',

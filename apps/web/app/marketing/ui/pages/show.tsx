@@ -4,6 +4,7 @@ import type { Data } from '@generated/data'
 import { Head } from '@inertiajs/react'
 import HeaderSection from '#marketing/ui/components/header'
 import HeroSection from '#marketing/ui/components/hero'
+import FooterSection from '#marketing/ui/components/footer'
 
 type PageProps = InertiaProps<{
   pictures: Data.Picture.Picture[]
@@ -26,9 +27,9 @@ export default function Page({ pictures }: PageProps) {
         <meta name="twitter:description" content={DESCRIPTION} />
         <link rel="canonical" href="https://pillonca.fr/" />
       </Head>
-      <div className="dark flex flex-col min-h-screen bg-black overflow-hidden max-h-screen ">
+      <div className="dark flex flex-col h-screen overflow-hidden bg-black">
         <HeaderSection />
-        <main className="flex-1">
+        <main className="flex-1 min-h-0 overflow-y-auto md:overflow-hidden">
           <HeroSection pictures={pictures} />
         </main>
       </div>

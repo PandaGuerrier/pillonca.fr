@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import type { Data } from '@generated/data'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { Lightbox } from '#marketing/ui/components/lightbox'
 
 export const AnimatedPictures = ({
   pictures,
@@ -11,6 +12,7 @@ export const AnimatedPictures = ({
   autoplay?: boolean;
 }) => {
   const [active, setActive] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false)
 
   const handleNext = () => setActive((prev) => (prev + 1) % pictures.length);
   const handlePrev = () => setActive((prev) => (prev - 1 + pictures.length) % pictures.length);
@@ -29,7 +31,10 @@ export const AnimatedPictures = ({
   return (
     <div className="w-full">
       {/* Image with gradient overlay */}
-      <div className="relative h-80 w-full rounded-3xl overflow-hidden">
+      <div
+        className="relative h-80 w-full rounded-3xl overflow-hidden cursor-zoom-in"
+        onClick={() => setLightboxOpen(true)}
+      >
         <AnimatePresence>
           {pictures.map((picture, index) => (
             <motion.div
@@ -121,6 +126,19 @@ export const AnimatedPictures = ({
           </span>
         </button>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <Lightbox
+            pictures={pictures}
+            index={active}
+            onClose={() => setLightboxOpen(false)}
+            onPrev={() => setActive((i) => (i - 1 + pictures.length) % pictures.length)}
+            onNext={() => setActive((i) => (i + 1) % pictures.length)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

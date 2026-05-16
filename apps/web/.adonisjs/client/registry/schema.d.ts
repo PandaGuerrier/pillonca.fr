@@ -31,6 +31,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#marketing/controllers/marketing_controller').default['handle']>>>
     }
   }
+  'marketing.mentions_legales': {
+    methods: ["GET","HEAD"]
+    pattern: '/mentions-legales'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#marketing/controllers/marketing_controller').default['mentionsLegales']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#marketing/controllers/marketing_controller').default['mentionsLegales']>>>
+    }
+  }
+  'marketing.politique_de_confidentialite': {
+    methods: ["GET","HEAD"]
+    pattern: '/politique-de-confidentialite'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#marketing/controllers/marketing_controller').default['politiqueDeConfidentialite']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#marketing/controllers/marketing_controller').default['politiqueDeConfidentialite']>>>
+    }
+  }
   'dashboard.show': {
     methods: ["GET","HEAD"]
     pattern: '/dashboard'

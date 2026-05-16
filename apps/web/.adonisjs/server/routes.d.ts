@@ -6,6 +6,8 @@ export type ScannedRoutes = {
   ALL: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'marketing.show': { paramsTuple?: []; params?: {} }
+    'marketing.mentions_legales': { paramsTuple?: []; params?: {} }
+    'marketing.politique_de_confidentialite': { paramsTuple?: []; params?: {} }
     'dashboard.show': { paramsTuple?: []; params?: {} }
     'pictures.index': { paramsTuple?: []; params?: {} }
     'pictures.store': { paramsTuple?: []; params?: {} }
@@ -34,6 +36,8 @@ export type ScannedRoutes = {
   GET: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'marketing.show': { paramsTuple?: []; params?: {} }
+    'marketing.mentions_legales': { paramsTuple?: []; params?: {} }
+    'marketing.politique_de_confidentialite': { paramsTuple?: []; params?: {} }
     'dashboard.show': { paramsTuple?: []; params?: {} }
     'pictures.index': { paramsTuple?: []; params?: {} }
     'auth.sign_in.show': { paramsTuple?: []; params?: {} }
@@ -47,6 +51,8 @@ export type ScannedRoutes = {
   HEAD: {
     'drive.fs.serve': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
     'marketing.show': { paramsTuple?: []; params?: {} }
+    'marketing.mentions_legales': { paramsTuple?: []; params?: {} }
+    'marketing.politique_de_confidentialite': { paramsTuple?: []; params?: {} }
     'dashboard.show': { paramsTuple?: []; params?: {} }
     'pictures.index': { paramsTuple?: []; params?: {} }
     'auth.sign_in.show': { paramsTuple?: []; params?: {} }

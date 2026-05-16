@@ -9,6 +9,8 @@ export interface ApiDefinition {
   }
   marketing: {
     show: typeof routes['marketing.show']
+    mentionsLegales: typeof routes['marketing.mentions_legales']
+    politiqueDeConfidentialite: typeof routes['marketing.politique_de_confidentialite']
   }
   dashboard: {
     show: typeof routes['dashboard.show']

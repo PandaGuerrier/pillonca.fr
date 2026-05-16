@@ -1,25 +1,28 @@
-import Container from '#marketing/ui/components/container'
+import { Link } from '@inertiajs/react'
 
 export default function FooterSection() {
   return (
-    <footer className="border-t bg-background/50 backdrop-blur-xl">
-      <Container className="flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
-        <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-          <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            Built by <span className="font-medium text-foreground">ATISLabs</span>. The source code
-            is available on{' '}
-            <a
-              href="https://github.com/filipebraida/adonisjs-starter-kit"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              GitHub
-            </a>
-            .
-          </p>
-        </div>
-      </Container>
+    <footer className="border-t border-white/5 py-6">
+      <div className="flex flex-col items-center gap-3 max-w-5xl mx-auto px-6">
+        <p className="text-xs text-white/20 tracking-widest uppercase">
+          © {new Date().getFullYear()} Laurent Pillonca
+        </p>
+        <nav className="flex items-center gap-1 text-xs text-white/30">
+          <Link
+            href="/mentions-legales"
+            className="hover:text-white/70 transition-colors px-2 py-1"
+          >
+            Mentions légales
+          </Link>
+          <span className="text-white/10">•</span>
+          <Link
+            href="/politique-de-confidentialite"
+            className="hover:text-white/70 transition-colors px-2 py-1"
+          >
+            Politique de confidentialité
+          </Link>
+        </nav>
+      </div>
     </footer>
   )
 }

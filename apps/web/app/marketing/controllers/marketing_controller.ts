@@ -11,4 +11,12 @@ export default class MarketingController {
       pictures: PictureTransformer.transform(pictures),
     })
   }
+
+  public async mentionsLegales({ inertia }: HttpContext) {
+    return inertia.render('marketing/mentions-legales', {})
+  }
+
+  public async politiqueDeConfidentialite({ inertia }: HttpContext) {
+    return inertia.render('marketing/politique-de-confidentialite', {})
+  }
 }
