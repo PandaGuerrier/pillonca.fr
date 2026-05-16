@@ -27,14 +27,6 @@ export interface ApiDefinition {
     signOut: {
       handle: typeof routes['auth.sign_out.handle']
     }
-    forgotPassword: {
-      show: typeof routes['auth.forgot_password.show']
-      handle: typeof routes['auth.forgot_password.handle']
-    }
-    resetPassword: {
-      show: typeof routes['auth.reset_password.show']
-      handle: typeof routes['auth.reset_password.handle']
-    }
   }
   locale: {
     switch: typeof routes['locale.switch']

@@ -66,30 +66,6 @@ const routes = {
     tokens: [{"old":"/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['auth.sign_out.handle']['types'],
   },
-  'auth.forgot_password.show': {
-    methods: ["GET","HEAD"],
-    pattern: '/forgot-password',
-    tokens: [{"old":"/forgot-password","type":0,"val":"forgot-password","end":""}],
-    types: placeholder as Registry['auth.forgot_password.show']['types'],
-  },
-  'auth.forgot_password.handle': {
-    methods: ["POST"],
-    pattern: '/forgot-password',
-    tokens: [{"old":"/forgot-password","type":0,"val":"forgot-password","end":""}],
-    types: placeholder as Registry['auth.forgot_password.handle']['types'],
-  },
-  'auth.reset_password.show': {
-    methods: ["GET","HEAD"],
-    pattern: '/reset-password/:token',
-    tokens: [{"old":"/reset-password/:token","type":0,"val":"reset-password","end":""},{"old":"/reset-password/:token","type":1,"val":"token","end":""}],
-    types: placeholder as Registry['auth.reset_password.show']['types'],
-  },
-  'auth.reset_password.handle': {
-    methods: ["POST"],
-    pattern: '/reset-password/:token',
-    tokens: [{"old":"/reset-password/:token","type":0,"val":"reset-password","end":""},{"old":"/reset-password/:token","type":1,"val":"token","end":""}],
-    types: placeholder as Registry['auth.reset_password.handle']['types'],
-  },
   'locale.switch': {
     methods: ["POST"],
     pattern: '/switch/:locale',

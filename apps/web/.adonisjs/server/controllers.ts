@@ -5,12 +5,8 @@
 
 export const controllers = {
   auth: {
-    ForgotPassword: () => import('#app/auth/controllers/forgot_password_controller'),
-    ResetPassword: () => import('#app/auth/controllers/reset_password_controller'),
     SignIn: () => import('#app/auth/controllers/sign_in_controller'),
     SignOut: () => import('#app/auth/controllers/sign_out_controller'),
-    SignUp: () => import('#app/auth/controllers/sign_up_controller'),
-    Social: () => import('#app/auth/controllers/social_controller'),
   },
   dashboard: {
     Dashboard: () => import('#app/dashboard/controllers/dashboard_controller'),

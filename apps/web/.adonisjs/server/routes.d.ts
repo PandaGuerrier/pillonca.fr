@@ -14,10 +14,6 @@ export type ScannedRoutes = {
     'auth.sign_in.show': { paramsTuple?: []; params?: {} }
     'auth.sign_in.handle': { paramsTuple?: []; params?: {} }
     'auth.sign_out.handle': { paramsTuple?: []; params?: {} }
-    'auth.forgot_password.show': { paramsTuple?: []; params?: {} }
-    'auth.forgot_password.handle': { paramsTuple?: []; params?: {} }
-    'auth.reset_password.show': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
-    'auth.reset_password.handle': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
     'locale.switch': { paramsTuple: [ParamValue]; params: {'locale': ParamValue} }
     'users.index': { paramsTuple?: []; params?: {} }
     'users.store': { paramsTuple?: []; params?: {} }
@@ -41,8 +37,6 @@ export type ScannedRoutes = {
     'dashboard.show': { paramsTuple?: []; params?: {} }
     'pictures.index': { paramsTuple?: []; params?: {} }
     'auth.sign_in.show': { paramsTuple?: []; params?: {} }
-    'auth.forgot_password.show': { paramsTuple?: []; params?: {} }
-    'auth.reset_password.show': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
     'users.index': { paramsTuple?: []; params?: {} }
     'settings.index': { paramsTuple?: []; params?: {} }
     'profile.show': { paramsTuple?: []; params?: {} }
@@ -56,8 +50,6 @@ export type ScannedRoutes = {
     'dashboard.show': { paramsTuple?: []; params?: {} }
     'pictures.index': { paramsTuple?: []; params?: {} }
     'auth.sign_in.show': { paramsTuple?: []; params?: {} }
-    'auth.forgot_password.show': { paramsTuple?: []; params?: {} }
-    'auth.reset_password.show': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
     'users.index': { paramsTuple?: []; params?: {} }
     'settings.index': { paramsTuple?: []; params?: {} }
     'profile.show': { paramsTuple?: []; params?: {} }
@@ -69,8 +61,6 @@ export type ScannedRoutes = {
     'pictures.store': { paramsTuple?: []; params?: {} }
     'auth.sign_in.handle': { paramsTuple?: []; params?: {} }
     'auth.sign_out.handle': { paramsTuple?: []; params?: {} }
-    'auth.forgot_password.handle': { paramsTuple?: []; params?: {} }
-    'auth.reset_password.handle': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
     'locale.switch': { paramsTuple: [ParamValue]; params: {'locale': ParamValue} }
     'users.store': { paramsTuple?: []; params?: {} }
     'users.invite.handle': { paramsTuple?: []; params?: {} }
