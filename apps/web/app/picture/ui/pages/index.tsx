@@ -10,6 +10,7 @@ import {
   type Picture,
 } from '#picture/ui/components/picture_action_dialog'
 import { PictureDeleteDialog } from '#picture/ui/components/picture_delete_dialog'
+import { FolderUpload } from '#picture/ui/components/folder_upload'
 
 import { Button } from '@workspace/ui/components/button'
 import { Badge } from '@workspace/ui/components/badge'
@@ -71,6 +72,8 @@ export default function PictureIndexPage({ pictures, q }: PageProps) {
             Ajouter une photo
           </Button>
         </Heading>
+
+        <FolderUpload />
 
         {pictures.data.length === 0 ? (
           <EmptyState onAdd={() => setDialogState('create')} />
