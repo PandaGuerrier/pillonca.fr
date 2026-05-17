@@ -7,7 +7,7 @@ export default class PictureTransformer extends BaseTransformer<Picture> {
 
     return {
       ...this.pick(picture, ['uuid', 'title', 'description', 'isActive', 'createdAt', 'updatedAt']),
-      fileUrl: picture.file?.url ?? null,
+      fileUrl: picture.file?.getVariant('webp')?.url ?? null,
     }
   }
 }

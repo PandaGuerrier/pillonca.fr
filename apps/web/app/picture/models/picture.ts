@@ -9,7 +9,7 @@ export default class Picture extends BaseModel {
   @column({ isPrimary: true })
   declare uuid: string
 
-  @attachment({ preComputeUrl: true })
+  @attachment({ preComputeUrl: true, variants: ['webp'] })
   declare file: Attachment
 
   @column()
