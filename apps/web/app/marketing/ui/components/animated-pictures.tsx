@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Data } from '@generated/data'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Lightbox } from '#marketing/ui/components/lightbox'
@@ -19,14 +19,25 @@ export const AnimatedPictures = ({
 
   useEffect(() => {
     if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
+      const interval = setInterval(handleNext, 7500);
       return () => clearInterval(interval);
     }
   }, [autoplay]);
 
-  const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
+  // Rotations stables — recalculées uniquement si le nombre de photos change
+  const rotations = useMemo(
+    () => pictures.map(() => Math.floor(Math.random() * 21) - 10),
+    [pictures.length]
+  );
 
   if (!pictures.length) return null;
+
+  // Seulement l'image active + les 2 suivantes en DOM
+  const visibleIndexes = [
+    active,
+    (active + 1) % pictures.length,
+    (active + 2) % pictures.length,
+  ];
 
   return (
     <div className="w-full">
@@ -36,34 +47,37 @@ export const AnimatedPictures = ({
         onClick={() => setLightboxOpen(true)}
       >
         <AnimatePresence>
-          {pictures.map((picture, index) => (
-            <motion.div
-              key={picture.fileUrl}
-              initial={{ opacity: 0, scale: 0.9, z: -100, rotate: randomRotateY() }}
-              animate={{
-                opacity: index === active ? 1 : 0.7,
-                scale: index === active ? 1 : 0.95,
-                z: index === active ? 0 : -100,
-                rotate: index === active ? 0 : randomRotateY(),
-                zIndex: index === active ? 40 : pictures.length + 2 - index,
-                y: index === active ? [0, -80, 0] : 0,
-              }}
-              exit={{ opacity: 0, scale: 0.9, z: 100, rotate: randomRotateY() }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute inset-0 origin-bottom"
-            >
-              <img
-                src={picture.fileUrl || ""}
-                alt={picture.title}
-                draggable={false}
-                className="h-full w-full object-cover object-center"
-              />
-            </motion.div>
-          ))}
+          {visibleIndexes.map((realIndex, visualIndex) => {
+            const picture = pictures[realIndex];
+            return (
+              <motion.div
+                key={picture.fileUrl}
+                initial={{ opacity: 0, scale: 0.9, z: -100, rotate: rotations[realIndex] }}
+                animate={{
+                  opacity: visualIndex === 0 ? 1 : 0.7,
+                  scale: visualIndex === 0 ? 1 : 0.95 - visualIndex * 0.05,
+                  z: visualIndex === 0 ? 0 : -100 * visualIndex,
+                  rotate: visualIndex === 0 ? 0 : rotations[realIndex],
+                  zIndex: visualIndex === 0 ? 40 : 3 - visualIndex,
+                  y: visualIndex === 0 ? [0, -80, 0] : 0,
+                }}
+                exit={{ opacity: 0, scale: 0.9, z: 100, rotate: rotations[realIndex] }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="absolute inset-0 origin-bottom"
+              >
+                <img
+                  src={picture.fileUrl || ""}
+                  alt={picture.title}
+                  draggable={false}
+                  className="h-full w-full object-cover object-center"
+                />
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 z-50 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-50 bg-linear-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
         {/* Title + description */}
         <motion.div
@@ -97,7 +111,6 @@ export const AnimatedPictures = ({
           <span className="text-xs tracking-widest uppercase font-medium">Précédent</span>
         </button>
 
-        {/* Dots or counter */}
         {pictures.length < 6 ? (
           <div className="flex gap-1.5">
             {pictures.map((_, i) => (

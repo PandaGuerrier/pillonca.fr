@@ -19,6 +19,8 @@ declare module '@adonisjs/inertia/types' {
     'core/errors/not_found': ExtractProps<(typeof import('../../app/core/ui/pages/errors/not_found.tsx'))['default']>
     'core/errors/server_error': ExtractProps<(typeof import('../../app/core/ui/pages/errors/server_error.tsx'))['default']>
     'dashboard/show': ExtractProps<(typeof import('../../app/dashboard/ui/pages/show.tsx'))['default']>
+    'marketing/mentions-legales': ExtractProps<(typeof import('../../app/marketing/ui/pages/mentions-legales.tsx'))['default']>
+    'marketing/politique-de-confidentialite': ExtractProps<(typeof import('../../app/marketing/ui/pages/politique-de-confidentialite.tsx'))['default']>
     'marketing/show': ExtractProps<(typeof import('../../app/marketing/ui/pages/show.tsx'))['default']>
     'picture/index': ExtractProps<(typeof import('../../app/picture/ui/pages/index.tsx'))['default']>
     'users/appearance': ExtractProps<(typeof import('../../app/users/ui/pages/appearance.tsx'))['default']>
